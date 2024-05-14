@@ -1,42 +1,37 @@
 package org.launchcode.techjobs.oo;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
 public class JobTest {
     //TODO: Create your unit tests here
-    private Job job1;
-    private Job job2;
 
-    @Before
-    public void setUp() {
-        job1 = new Job();
-        job2 = new Job();
-        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    }
+    private Job testJob1;
+    private Job testJob2;
+
 
     //Test the Empty Constructor
     @Test
     public void testSettingJobId() {
-        assertNotEquals(job1.getId(), job2.getId());
+        // Create two Job objects using the empty constructor
+        testJob1 = new Job();
+        testJob2 = new Job();
+        // Verify that the IDs of the two objects are not equal
+        assertNotEquals(testJob1.getId(), testJob2.getId());
     }
 
     //***Test the Full Constructor
-    private Job testJob;
-
     @Test
     public void testJobConstructorSetsAllFields() {
-        // Check the class and value of each field
+        // Create a new Job object with specific field values using the full constructor
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        // Confirm that object is an instance of Job
         assertTrue(testJob instanceof Job);
+        // Confirm that each field of the object was initialized correctly
         assertEquals("Product tester", testJob.getName());
         assertEquals("ACME", testJob.getEmployer().getValue());
         assertEquals("Desert", testJob.getLocation().getValue());
@@ -47,15 +42,19 @@ public class JobTest {
     //Test the equals Method
     @Test
     public void testJobsForEquality() {
-        // Check if the two jobs are equal
-        assertFalse(job1.equals(job2));
+        // Create two Job objects with identical field values but not for ID
+        Job testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        // Verify that IDs of the two objects are not equal
+        assertNotEquals(testJob1.getId(), testJob2.getId());
+        // Verify that two objects are not considered equal
+        assertFalse(testJob1.equals(testJob2));
     }
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
-        // Create a Job object with just ID
+        // Create a Job object with only ID
         Job testJob = new Job();
-        // Get the string representation using the toString method
         String expected = System.lineSeparator() +
                 "ID: " + testJob.getId() + System.lineSeparator() +
                 "Name: Data not available" + System.lineSeparator() +
@@ -65,8 +64,6 @@ public class JobTest {
                 "Core Competency: Data not available" + System.lineSeparator();
         assertEquals(expected, testJob.toString());
     }
-
-
 
     @Test
     public void testToStringContainsCorrectLabelsAndData() {
@@ -93,4 +90,3 @@ public class JobTest {
 
 
 }
-

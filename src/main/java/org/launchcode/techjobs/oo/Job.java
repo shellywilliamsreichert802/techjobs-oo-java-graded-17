@@ -10,13 +10,11 @@ public class Job {
     public int getId() {
         return id;
     }
-
     private String name;
     private Employer employer;
     private Location location;
     private PositionType positionType;
     private CoreCompetency coreCompetency;
-
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
@@ -31,9 +29,9 @@ public class Job {
         positionType = new PositionType("");
         coreCompetency = new CoreCompetency("");
     }
+
     // Constructor with 5 parameters
-    public Job(String name, Employer employer, Location location,
-               PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this(); // Call the empty constructor to initialize id
         this.name = name;
         this.employer = employer;
@@ -41,7 +39,6 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-
 
     // toString method
     @Override
@@ -91,9 +88,11 @@ public class Job {
         //== job.id && Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
     }
 
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, employer, location, positionType, coreCompetency);
+//    }
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
     @Override
     //The hashCode method is overridden to generate a hash code based on the id field of the Job class
     public int hashCode() {
